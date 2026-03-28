@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oneness Campus ID — Accelerating the Global Oneness Movement</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07080a;
+  --bg2: #0d0f12;
+  --bg3: #111419;
+  --gold: #c8a96e;
+  --gold-dim: rgba(200,169,110,0.15);
+  --teal: #5aada0;
+  --teal-dim: rgba(90,173,160,0.12);
+  --text: #e6e0d8;
+  --muted: #7a7570;
+  --muted2: #a09890;
+  --border: rgba(200,169,110,0.12);
+  --border-t: rgba(90,173,160,0.15);
+  --red-dim: rgba(200,80,80,0.08);
+  --red: #c87070;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+body.ja { font-family: 'Noto Serif JP', serif; }
+body::after {
+  content:''; position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9999; opacity:.5;
+}
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem 3rem;
+  background:rgba(7,8,10,0.88); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { font-family:'Cormorant Garamond',serif; font-size:.95rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+.lang-toggle { display:flex; border:1px solid var(--border); border-radius:3px; overflow:hidden; }
+.lang-btn { background:transparent; border:none; color:var(--muted); font-family:'Outfit',sans-serif; font-size:.72rem; letter-spacing:.1em; padding:.3rem .85rem; cursor:pointer; transition:all .2s; }
+.lang-btn.active { background:var(--gold); color:var(--bg); font-weight:500; }
+
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; text-align:center;
+  padding:9rem 2rem 6rem; position:relative; overflow:hidden;
+}
+.hero-glow {
+  position:absolute; width:700px; height:700px; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(90,173,160,0.06) 0%, rgba(200,169,110,0.04) 40%, transparent 70%);
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  animation:breathe 9s ease-in-out infinite;
+}
+.hero-glow2 {
+  position:absolute; width:400px; height:400px; border-radius:50%;
+  background:radial-gradient(ellipse, rgba(200,169,110,0.05) 0%, transparent 70%);
+  top:35%; left:60%; animation:breathe 13s ease-in-out infinite reverse;
+}
+@keyframes breathe {
+  0%,100% { transform:translate(-50%,-50%) scale(1); opacity:.5; }
+  50% { transform:translate(-50%,-50%) scale(1.2); opacity:1; }
+}
+.hero-eyebrow { font-size:.68rem; letter-spacing:.4em; text-transform:uppercase; color:var(--teal); margin-bottom:2rem; opacity:0; animation:fadeUp .9s .3s forwards; }
+.hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(3.2rem,9vw,7.5rem); font-weight:300; line-height:1.02; margin-bottom:1.8rem; opacity:0; animation:fadeUp .9s .5s forwards; }
+.hero-title em { font-style:italic; color:var(--gold); }
+.hero-desc { font-size:clamp(.95rem,1.8vw,1.1rem); color:var(--muted2); max-width:620px; margin:0 auto 1rem; opacity:0; animation:fadeUp .9s .7s forwards; }
+.hero-author { font-size:.75rem; letter-spacing:.15em; color:var(--muted); margin-bottom:3.5rem; opacity:0; animation:fadeUp .9s .85s forwards; }
+.hero-scroll { display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:0; animation:fadeUp .9s 1.1s forwards; }
+.hero-scroll span { font-size:.62rem; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; }
+.scroll-line { width:1px; height:60px; background:linear-gradient(to bottom, var(--gold), transparent); animation:scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+.section { padding:7rem 2rem; }
+.section-inner { max-width:920px; margin:0 auto; }
+.section-label { font-size:.62rem; letter-spacing:.38em; text-transform:uppercase; color:var(--teal); margin-bottom:1.8rem; display:flex; align-items:center; gap:1rem; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--border-t); }
+h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3.4rem); font-weight:300; line-height:1.12; margin-bottom:1.5rem; }
+h2 em { font-style:italic; color:var(--gold); }
+.lead { font-size:1.05rem; color:var(--muted2); max-width:700px; margin-bottom:3rem; }
+
+.reality-cols { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:3rem; background:var(--border); }
+.reality-col { background:var(--bg2); padding:2.5rem; }
+.reality-col-head { font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; margin-bottom:1.8rem; padding-bottom:1rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:.8rem; }
+.dot { width:7px; height:7px; border-radius:50%; }
+.dot-red { background:var(--red); }
+.red-head { color:var(--red); }
+.reality-item { display:flex; gap:1rem; margin-bottom:1.6rem; align-items:flex-start; }
+.reality-item:last-child { margin-bottom:0; }
+.ri-icon { width:32px; height:32px; border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; background:var(--red-dim); color:var(--red); }
+.ri-title { font-size:.82rem; font-weight:500; color:var(--text); margin-bottom:.3rem; }
+.ri-desc { font-size:.82rem; color:var(--muted); line-height:1.6; margin:0; max-width:none; }
+
+.vision-section { background:var(--bg2); }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2.5rem; }
+.vision-card { border:1px solid var(--border); padding:2.5rem; background:linear-gradient(135deg, rgba(200,169,110,0.03), transparent 60%); position:relative; }
+.vision-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(to bottom, var(--gold), var(--teal)); }
+.vc-head { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; color:var(--gold); margin-bottom:1rem; }
+.vc-body { font-size:.9rem; color:var(--muted2); margin-bottom:1.4rem; max-width:none; }
+.vc-items { display:flex; flex-direction:column; gap:.65rem; }
+.vc-item { display:flex; gap:.8rem; align-items:flex-start; font-size:.86rem; color:var(--muted2); }
+.vc-bullet { width:17px; height:17px; border-radius:50%; border:1px solid var(--teal); color:var(--teal); font-size:.58rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:.18rem; }
+
+.flow-wrap { margin:3rem 0; padding:2.5rem 2rem; border:1px solid var(--border-t); background:var(--bg3); }
+.flow-label { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); text-align:center; margin-bottom:2.5rem; }
+.flow-col-label { font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; text-align:center; margin-bottom:1rem; }
+.flow-col-label.bad { color:var(--red); }
+.flow-col-label.good { color:var(--teal); }
+.flow-node { text-align:center; padding:.75rem .9rem; border:1px solid var(--border); background:var(--bg2); font-size:.76rem; color:var(--muted2); min-width:105px; }
+.flow-node.center-node { border-color:var(--gold); background:var(--gold-dim); color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1.05rem; }
+.flow-node.teal-node { border-color:var(--teal); background:var(--teal-dim); color:var(--teal); }
+.flow-arrow-h { display:flex; align-items:center; color:var(--muted); font-size:.9rem; padding:0 .3rem; }
+.flow-divider { display:flex; align-items:center; gap:1.5rem; margin:2rem 0; color:var(--muted); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; }
+.flow-divider::before, .flow-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+.flow-section { margin-bottom:1.5rem; }
+.flow-nodes-row { display:flex; align-items:center; justify-content:center; gap:2px; flex-wrap:wrap; }
+
+.four-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
+.ss-card { padding:2rem; border:1px solid var(--border-t); background:var(--bg2); position:relative; }
+.ss-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right, var(--teal), transparent); }
+.ss-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:rgba(90,173,160,0.15); line-height:1; margin-bottom:.6rem; }
+.ss-title { font-size:.85rem; font-weight:500; color:var(--text); margin-bottom:.7rem; }
+.ss-body { font-size:.84rem; color:var(--muted); margin:0; max-width:none; }
+
+.platform-note { margin-top:2.5rem; padding:2rem 2.5rem; border:1px solid var(--border); background:var(--bg2); }
+.platform-note-label { font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; color:var(--teal); margin-bottom:1rem; }
+.platform-note-body { font-size:.9rem; color:var(--muted2); margin:0; }
+
+.closing-section { background:var(--bg2); text-align:center; }
+.closing-quote { font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,4vw,2.6rem); font-weight:300; font-style:italic; color:var(--gold); line-height:1.3; max-width:700px; margin:0 auto 2rem; }
+.closing-body { font-size:.95rem; color:var(--muted2); max-width:620px; margin:0 auto 3rem; }
+.closing-sig { font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--text); letter-spacing:.1em; margin-bottom:.3rem; }
+.closing-sig-sub { font-size:.72rem; letter-spacing:.2em; color:var(--muted); text-transform:uppercase; }
+
+footer { padding:2rem; text-align:center; border-top:1px solid var(--border); font-size:.7rem; letter-spacing:.15em; color:var(--muted); text-transform:uppercase; }
+
+@media(max-width:700px) {
+  nav { padding:.9rem 1.5rem; }
+  .reality-cols, .two-col, .four-grid { grid-template-columns:1fr; }
+}
+
+[data-en],[data-ja] { display:none; }
+body.en [data-en] { display:block; }
+body.en span[data-en] { display:inline; }
+body.ja [data-ja] { display:block; }
+body.ja span[data-ja] { display:inline; }
+</style>
+</head>
+<body class="en">
+
+<nav>
+  <div class="nav-logo">Oneness Campus ID</div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">JA</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <p class="hero-eyebrow">
+    <span data-en>Accelerating the Global Oneness Movement</span>
+    <span data-ja>ワンネスムーブメントの進化を、世界で加速させる</span>
+  </p>
+  <h1 class="hero-title"><em>Oneness<br>Campus ID</em></h1>
+  <p class="hero-desc">
+    <span data-en>One universal identity for every seeker — connecting every journey, every course, every moment of awakening, across the world.</span>
+    <span data-ja>世界中のすべてのシーカーのための、ひとつの共通ID。すべての旅路、すべてのコース、すべての目覚めの瞬間を——つなぐ。</span>
+  </p>
+  <p class="hero-author">
+    <span data-en>A vision by Kazuto Yasuda</span>
+    <span data-ja>安田 和人 によるビジョン</span>
+  </p>
+  <div class="hero-scroll">
+    <span data-en>Explore</span><span data-ja>読む</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- REALITY -->
+<div class="section">
+  <div class="section-inner">
+    <p class="section-label">
+      <span data-en>The Current Reality</span>
+      <span data-ja>現状の課題</span>
+    </p>
+    <div data-en><h2>What is <em>happening today</em></h2>
+      <p class="lead">The Oneness Movement is growing globally — but the infrastructure behind it is struggling to keep pace. Two compounding challenges are holding it back.</p>
+    </div>
+    <div data-ja><h2>今、<em>何が起きているか</em></h2>
+      <p class="lead">ワンネスムーブメントは世界規模で成長し続けています——しかし、その基盤となるインフラが追いついていません。2つの課題が、前進を阻んでいます。</p>
+    </div>
+
+    <div class="reality-cols">
+      <div class="reality-col">
+        <div class="reality-col-head red-head">
+          <span class="dot dot-red"></span>
+          <span data-en>For Seekers</span><span data-ja>シーカー側</span>
+        </div>
+        <div class="reality-item">
+          <div class="ri-icon">⛓</div>
+          <div class="ri-body">
+            <div class="ri-title" data-en>Fragmented across platforms</div>
+            <div class="ri-title" data-ja>プラットフォームの乱立</div>
+            <p class="ri-desc" data-en>Each course generates its own groups — on WhatsApp, LINE, Telegram, or whichever platform is local. Seekers around the world end up in dozens of overlapping channels, receiving the same announcements repeatedly.</p>
+            <p class="ri-desc" data-ja>コースごとにWhatsApp、LINE、Telegramなど各国のプラットフォームにグループが生まれます。世界中のシーカーが気づけば何十ものチャンネルに参加し、同じ情報が繰り返し届く状況になっています。</p>
+          </div>
+        </div>
+        <div class="reality-item">
+          <div class="ri-icon">🔇</div>
+          <div class="ri-body">
+            <div class="ri-title" data-en>No personalization</div>
+            <div class="ri-title" data-ja>パーソナライズの欠如</div>
+            <p class="ri-desc" data-en>Mass broadcasts to all channels feel like noise rather than guidance. There is no sense of "this message is for me, at this stage of my journey." The warmth of the teaching gets lost in the flood.</p>
+            <p class="ri-desc" data-ja>一斉配信は、個々の旅路に寄り添う言葉ではなくノイズになりかねません。「今の自分への言葉だ」という感覚が失われ、教えの温かみが情報の洪水に飲み込まれます。</p>
+          </div>
+        </div>
+        <div class="reality-item">
+          <div class="ri-icon">🌊</div>
+          <div class="ri-body">
+            <div class="ri-title" data-en>No single compass</div>
+            <div class="ri-title" data-ja>羅針盤がない</div>
+            <p class="ri-desc" data-en>Organizers, leaders, and teachers are active across many platforms worldwide. Seekers are cast into an ocean of content with no central place to understand what comes next on their path.</p>
+            <p class="ri-desc" data-ja>オーガナイザー、リーダー、先生たちが世界中の様々なプラットフォームで発信する中、シーカーは情報の海に放り出されたまま、「次に何をすればいいのか」が分からなくなります。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reality-col">
+        <div class="reality-col-head red-head">
+          <span class="dot dot-red"></span>
+          <span data-en>For Organizers</span><span data-ja>事務局側</span>
+        </div>
+        <div class="reality-item">
+          <div class="ri-icon">📋</div>
+          <div class="ri-body">
+            <div class="ri-title" data-en>No unified participant view</div>
+            <div class="ri-title" data-ja>参加者の一元把握ができない</div>
+            <p class="ri-desc" data-en>There is no single system where organizers can instantly see who has attended which courses, or who is ready for the next step. Each local office manages its own records separately, and the global picture remains invisible.</p>
+            <p class="ri-desc" data-ja>「どのシーカーがどのコースに参加したか」「次のステップへの準備が整っているのは誰か」を即座に把握できる統合システムがありません。各国の事務局がそれぞれに記録を持ち、全体像が見えない状態が続いています。</p>
+          </div>
+        </div>
+        <div class="reality-item">
+          <div class="ri-icon">📣</div>
+          <div class="ri-body">
+            <div class="ri-title" data-en>Untargeted outreach</div>
+            <div class="ri-title" data-ja>ターゲティングできないマーケティング</div>
+            <p class="ri-desc" data-en>Many courses have prerequisites — certain programs are only open to those who have completed earlier ones. Without a live, unified participant record, promotions reach everyone rather than only those who are genuinely ready.</p>
+            <p class="ri-desc" data-ja>多くのコースに受講条件があります。しかし統合された参加者記録がないために、準備が整った人だけでなく全員に案内を送らざるを得ない状況が生まれています。</p>
+          </div>
+        </div>
+        <div class="reality-item">
+          <div class="ri-icon">🔄</div>
+          <div class="ri-body">
+            <div class="ri-title" data-en>Multi-step schedule relay</div>
+            <div class="ri-title" data-ja>多段階のスケジュール伝達</div>
+            <p class="ri-desc" data-en>When EKAM updates a schedule, the message travels through multiple hands: EKAM → local organizer → manual translation → copy-paste into group chats. Every step introduces delay, inconsistency, and risk of error.</p>
+            <p class="ri-desc" data-ja>EKAMからのスケジュール変更は「EKAM→各国事務局→翻訳→各グループチャットへコピペ」という多段階のリレーを経ます。各ステップで遅延・ミス・抜け漏れのリスクが生まれます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VISION -->
+<div class="section vision-section">
+  <div class="section-inner">
+    <p class="section-label">
+      <span data-en>The Vision</span><span data-ja>ビジョン</span>
+    </p>
+    <div data-en><h2>One ID. <em>Every journey.</em></h2>
+      <p class="lead">Oneness Campus ID is a universal identity for every seeker in the Oneness Movement — a single key that connects their entire path, from the very first course to wherever the journey leads.</p>
+    </div>
+    <div data-ja><h2>ひとつのIDで、<em>すべての旅路を。</em></h2>
+      <p class="lead">Oneness Campus IDは、ワンネスムーブメントのすべてのシーカーのための共通IDです。最初のコースから、旅路が向かうどこへでも——ひとつの鍵でつながります。</p>
+    </div>
+
+    <div class="flow-wrap">
+      <p class="flow-label" data-en>Information Flow — Before &amp; After</p>
+      <p class="flow-label" data-ja>情報フローの変化</p>
+      <div class="flow-section">
+        <p class="flow-col-label bad" data-en>▲ Today — fragmented multi-step relay</p>
+        <p class="flow-col-label bad" data-ja>▲ 現状 — 多段階・多チャンネルのリレー</p>
+        <div class="flow-nodes-row">
+          <div class="flow-node">EKAM</div>
+          <div class="flow-arrow-h">→</div>
+          <div class="flow-node" data-en>Local Organizer<br><small>translate</small></div>
+          <div class="flow-node" data-ja>各国事務局<br><small>翻訳</small></div>
+          <div class="flow-arrow-h">→</div>
+          <div class="flow-node" data-en>WhatsApp<br>Group A</div>
+          <div class="flow-node" data-ja>WhatsApp<br>グループA</div>
+          <div class="flow-arrow-h">+</div>
+          <div class="flow-node" data-en>LINE<br>Group B</div>
+          <div class="flow-node" data-ja>LINE<br>グループB</div>
+          <div class="flow-arrow-h">+</div>
+          <div class="flow-node" data-en>Telegram…</div>
+          <div class="flow-node" data-ja>Telegram…</div>
+        </div>
+      </div>
+      <div class="flow-divider">
+        <span data-en>with Oneness Campus ID</span>
+        <span data-ja>Oneness Campus IDによって</span>
+      </div>
+      <div class="flow-section">
+        <p class="flow-col-label good" data-en>✦ Unified and direct</p>
+        <p class="flow-col-label good" data-ja>✦ 統合されたダイレクト配信</p>
+        <div class="flow-nodes-row">
+          <div class="flow-node teal-node">EKAM</div>
+          <div class="flow-arrow-h">→</div>
+          <div class="flow-node center-node">Oneness Campus</div>
+          <div class="flow-arrow-h">→</div>
+          <div class="flow-node teal-node" data-en>Each Seeker<br><small>in their language</small></div>
+          <div class="flow-node teal-node" data-ja>各シーカー<br><small>各言語で自動通知</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="vision-card">
+        <div class="vc-head" data-en>For Seekers</div>
+        <div class="vc-head" data-ja>シーカーへのメリット</div>
+        <p class="vc-body" data-en>A single login reveals everything — past, present, and what comes next.</p>
+        <p class="vc-body" data-ja>ひとつのログインで、過去・現在・これからがすべて見える。</p>
+        <div class="vc-items">
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>All courses in one place — FOA, OWL, NOA, Tapas, Abundance Festival, Manifest, and more</span>
+            <span data-ja>FOA、OWL、NOA、Tapas、Abundance Festival、Manifestなど、すべての参加コースを一覧で</span>
+          </div>
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>Receive only relevant updates — at the right moment, in the right language</span>
+            <span data-ja>自分に必要な情報だけを、適切なタイミングで、自分の言語で受け取る</span>
+          </div>
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>Discover what comes next on their unique path</span>
+            <span data-ja>自分の旅路における「次のステップ」が自然にわかる</span>
+          </div>
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>No more information overload — just clarity and forward movement</span>
+            <span data-ja>情報の洪水から解放され、純粋に前進できる環境へ</span>
+          </div>
+        </div>
+      </div>
+      <div class="vision-card">
+        <div class="vc-head" data-en>For Organizers</div>
+        <div class="vc-head" data-ja>事務局へのメリット</div>
+        <p class="vc-body" data-en>Real-time visibility into every seeker's journey — enabling precise, meaningful communication at global scale.</p>
+        <p class="vc-body" data-ja>すべてのシーカーの旅路をリアルタイムで把握——精度高く、人間味のあるコミュニケーションが世界規模で可能に。</p>
+        <div class="vc-items">
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>Reach exactly the right seekers — those who are genuinely ready for the next step</span>
+            <span data-ja>次のステップへの準備が整ったシーカーだけに、的確な案内を届ける</span>
+          </div>
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>EKAM updates once → all relevant seekers notified automatically, in their language</span>
+            <span data-ja>EKAMが1回更新すれば、必要なシーカーへ自動で各言語で通知が届く</span>
+          </div>
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>Recommend the right next course based on each person's actual history</span>
+            <span data-ja>個々の履歴に基づき、最適な次のコースをレコメンデーション</span>
+          </div>
+          <div class="vc-item"><div class="vc-bullet">✦</div>
+            <span data-en>One dashboard for EKAM and every local organizer worldwide</span>
+            <span data-ja>EKAMと世界中の各国事務局のための、ひとつのダッシュボード</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOUL SYNC -->
+<div class="section">
+  <div class="section-inner">
+    <p class="section-label">
+      <span data-en>Built on the ID Layer</span><span data-ja>ID基盤の上に広がるもの</span>
+    </p>
+    <div data-en><h2>Soul Sync Cluster — <em>a first vision</em></h2>
+      <p class="lead">One example of what becomes possible when every seeker carries a universal identity. A global space where anyone can practice together, regardless of where they are in the world.</p>
+    </div>
+    <div data-ja><h2>ソウルシンク・クラスター——<em>ひとつのビジョン</em></h2>
+      <p class="lead">すべてのシーカーが共通のIDを持つことで生まれる、最初のアプリケーション。世界中のどこにいても、誰もが共に実践できる場所。</p>
+    </div>
+
+    <div class="four-grid">
+      <div class="ss-card">
+        <div class="ss-num">01</div>
+        <div class="ss-title" data-en>Host or join a session, from anywhere</div>
+        <div class="ss-title" data-ja>どこからでも、セッションを作り・参加する</div>
+        <p class="ss-body" data-en>Anyone can create a Soul Sync or Serene Mind meditation session. Sessions are listed by time zone — seekers find a time that fits and join across borders, effortlessly.</p>
+        <p class="ss-body" data-ja>誰でもソウルシンク瞑想・セレーンマインド瞑想のセッションを開催できます。タイムゾーン別に一覧表示され、国境を越えて参加できます。</p>
+      </div>
+      <div class="ss-card">
+        <div class="ss-num">02</div>
+        <div class="ss-title" data-en>Quality assured — for every host</div>
+        <div class="ss-title" data-ja>誰が開催しても、品質を担保する</div>
+        <p class="ss-body" data-en>The app provides guided meditation audio, pure instrumental tracks, and ambient background music — curated for both Soul Sync and Serene Mind practices. No prior experience required to lead a beautiful session.</p>
+        <p class="ss-body" data-ja>アプリ内には誘導瞑想の音源、インストゥルメンタル、バックグラウンドミュージックが豊富に用意されています。経験不問で、誰もが品質の担保されたセッションを開催できます。</p>
+      </div>
+      <div class="ss-card">
+        <div class="ss-num">03</div>
+        <div class="ss-title" data-en>Your ID logs every moment</div>
+        <div class="ss-title" data-ja>IDが、すべての瞑想履歴を記録する</div>
+        <p class="ss-body" data-en>Each session is woven into your Oneness Campus ID — building a living record of your practice: who you sat with, how your journey has grown, and where you have connected.</p>
+        <p class="ss-body" data-ja>すべてのセッションがIDに記録されます。誰と瞑想し、どのように深まってきたか——あなたの旅路が、生きた記録として積み上がっていきます。</p>
+      </div>
+      <div class="ss-card">
+        <div class="ss-num">04</div>
+        <div class="ss-title" data-en>Hidden connections revealed</div>
+        <div class="ss-title" data-ja>隠されていたつながりが、浮かび上がる</div>
+        <p class="ss-body" data-en>"That's the person who sat next to me at FOA." "We were in the same group at the Abundance Festival." Data gently surfaces invisible threads that were always there — the quiet web of the Oneness family, now visible.</p>
+        <p class="ss-body" data-ja>「FOAで隣に座っていた人だ」「アバンダンスフェスで同じグループだった」——データが、ずっとそこにあった見えないつながりを照らし出します。ワンネスファミリーの静かな網が、姿を現します。</p>
+      </div>
+    </div>
+
+    <div class="platform-note">
+      <p class="platform-note-label" data-en>The Platform Horizon</p>
+      <p class="platform-note-label" data-ja>プラットフォームの地平線</p>
+      <p class="platform-note-body" data-en>Soul Sync Cluster is just the first application. As Oneness Campus ID grows, any future service — new courses, community tools, follow-up programs — can authenticate through the same shared identity layer. One unified ecosystem. One home for every seeker in the world.</p>
+      <p class="platform-note-body" data-ja>ソウルシンク・クラスターは、最初の一歩に過ぎません。Oneness Campus IDが育つにつれ、新しいコース、コミュニティツール、フォローアッププログラム——未来のあらゆるサービスが、同じIDで認証されていきます。ひとつのエコシステム。世界中のすべてのシーカーの、ひとつのホームへ。</p>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<div class="section closing-section">
+  <div class="section-inner" style="text-align:center;">
+    <p class="section-label" style="justify-content:center;">
+      <span data-en>Let's Build This Together</span><span data-ja>一緒に作りましょう</span>
+    </p>
+    <p class="closing-quote" data-en>"The infrastructure of awakening should be as clear and beautiful as the teaching itself."</p>
+    <p class="closing-quote" data-ja>「目覚めへの道を支えるインフラは、教えそのものと同じくらい、明確で美しくあるべきだ。」</p>
+    <p class="closing-body" data-en>This vision was not born from strategy. It arrived as a direct inspiration — a recognition that 20+ years of building technology can now serve a far larger purpose. I am not proposing to consult from the outside. I am ready to build this from within — together with EKAM, with organizers worldwide, with every person who believes the Movement deserves infrastructure worthy of its teaching.</p>
+    <p class="closing-body" data-ja>このビジョンは、戦略から生まれたものではありません。20年以上積み上げてきたIT技術が、今まさにより大きな目的のために使えると気づいた瞬間に、降りてきたインスピレーションです。外部からコンサルとして提案したいのではありません。EKAMと、世界中のオーガナイザーと、ムーブメントがその教えにふさわしいインフラを持つべきだと信じるすべての人と共に——内側から、全力で作り上げたいと思っています。</p>
+    <div class="closing-sig">Kazuto Yasuda</div>
+    <div class="closing-sig-sub" data-en>Co-founder, DeployGate &nbsp;·&nbsp; Founder, U2C &nbsp;·&nbsp; Seeker</div>
+    <div class="closing-sig-sub" data-ja>DeployGate 共同創業者 &nbsp;·&nbsp; U2C 代表 &nbsp;·&nbsp; シーカー</div>
+  </div>
+</div>
+
+<footer>
+  <span data-en>Oneness Campus ID — Advancing the Global Oneness Movement</span>
+  <span data-ja>Oneness Campus ID — ワンネスムーブメントの進化を、世界で加速させる</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.body.className = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+document.body.className = 'en';
+</script>
+</body>
+</html>

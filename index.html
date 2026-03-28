@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oneness Campus ID — UI Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08090b; --bg2:#0f1114; --bg3:#161a1f;
+  --gold:#c9a96e; --gold-dim:rgba(201,169,110,0.12);
+  --teal:#4fa99a; --teal-dim:rgba(79,169,154,0.12);
+  --rose:#c47a7a; --rose-dim:rgba(196,122,122,0.1);
+  --text:#e4ddd4; --muted:#6e6a65; --muted2:#9d9590;
+  --border:rgba(201,169,110,0.1); --border2:rgba(255,255,255,0.06);
+  --green:#6bab7e; --green-dim:rgba(107,171,126,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow:hidden;}
+
+/* SHELL */
+.shell{display:grid;grid-template-rows:56px 1fr;height:100vh;}
+
+/* TOPBAR */
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:2rem;}
+.topbar-logo{font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:.12em;color:var(--gold);white-space:nowrap;}
+.topbar-tabs{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.topbar-tab{background:transparent;border:none;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.08em;color:var(--muted2);padding:.4rem 1.1rem;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.topbar-tab.active{background:var(--gold);color:var(--bg);font-weight:500;}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:1rem;}
+.topbar-user{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--muted2);}
+.avatar{width:28px;height:28px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--gold);}
+
+/* MAIN */
+.main{display:flex;overflow:hidden;}
+.sidebar{width:210px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border2);display:flex;flex-direction:column;padding:1.2rem 0;overflow-y:auto;}
+.sidebar-section{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);padding:.8rem 1.2rem .4rem;}
+.sidebar-item{display:flex;align-items:center;gap:.7rem;padding:.55rem 1.2rem;font-size:.8rem;color:var(--muted2);cursor:pointer;transition:all .15s;border-left:2px solid transparent;}
+.sidebar-item:hover{color:var(--text);background:rgba(255,255,255,0.03);}
+.sidebar-item.active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-dim);}
+.sidebar-item .icon{font-size:1rem;width:18px;text-align:center;}
+.badge{margin-left:auto;background:var(--teal);color:var(--bg);font-size:.6rem;font-weight:500;border-radius:8px;padding:.1rem .45rem;}
+.badge-r{margin-left:auto;background:var(--rose);color:var(--bg);font-size:.6rem;font-weight:500;border-radius:8px;padding:.1rem .45rem;}
+
+/* CONTENT */
+.content{flex:1;overflow-y:auto;padding:1.8rem 2rem;background:var(--bg);}
+.page-header{margin-bottom:1.8rem;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:.3rem;}
+.page-title em{font-style:italic;color:var(--gold);}
+.page-sub{font-size:.8rem;color:var(--muted2);}
+
+/* STATS */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.8rem;}
+.stat-card{background:var(--bg2);border:1px solid var(--border2);padding:1.2rem 1.4rem;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;}
+.stat-card.gold::before{background:var(--gold);}
+.stat-card.teal::before{background:var(--teal);}
+.stat-card.green::before{background:var(--green);}
+.stat-card.rose::before{background:var(--rose);}
+.stat-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+.stat-value{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;line-height:1;}
+.stat-value.gold{color:var(--gold);}
+.stat-value.teal{color:var(--teal);}
+.stat-value.green{color:var(--green);}
+.stat-value.rose{color:var(--rose);}
+.stat-sub{font-size:.72rem;color:var(--muted);margin-top:.4rem;}
+
+/* PANELS */
+.two-col{display:grid;grid-template-columns:1.4fr 1fr;gap:1.2rem;margin-bottom:1.2rem;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.2rem;}
+.panel{background:var(--bg2);border:1px solid var(--border2);}
+.panel-head{padding:.9rem 1.2rem;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;}
+.panel-title{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);}
+.panel-action{font-size:.7rem;color:var(--teal);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
+
+/* TABLE */
+.table{width:100%;border-collapse:collapse;}
+.table th{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:400;text-align:left;padding:.5rem .8rem;border-bottom:1px solid var(--border2);}
+.table td{padding:.65rem .8rem;font-size:.8rem;color:var(--muted2);border-bottom:1px solid rgba(255,255,255,0.03);}
+.table tr:hover td{background:rgba(255,255,255,0.02);}
+.table td.bright{color:var(--text);}
+
+/* PILLS */
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.08em;padding:.2rem .65rem;border-radius:20px;font-weight:500;}
+.pill.done{background:var(--green-dim);color:var(--green);}
+.pill.upcoming{background:var(--teal-dim);color:var(--teal);}
+.pill.planning{background:var(--gold-dim);color:var(--gold);}
+.pill.owl{background:rgba(201,169,110,0.15);color:var(--gold);}
+.pill.foa{background:var(--teal-dim);color:var(--teal);}
+.pill.noa{background:var(--green-dim);color:var(--green);}
+.pill.lang-en{background:rgba(79,169,154,0.15);color:var(--teal);}
+.pill.lang-jp{background:rgba(201,169,110,0.15);color:var(--gold);}
+.pill.lang-need{background:var(--rose-dim);color:var(--rose);}
+
+/* FORM */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;}
+.form-field{display:flex;flex-direction:column;gap:.3rem;}
+.form-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+.form-input{background:var(--bg3);border:1px solid var(--border2);color:var(--text);font-family:'DM Sans',sans-serif;font-size:.8rem;padding:.5rem .7rem;outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:var(--gold);}
+.form-select{background:var(--bg3);border:1px solid var(--border2);color:var(--muted2);font-family:'DM Sans',sans-serif;font-size:.8rem;padding:.5rem .7rem;outline:none;appearance:none;}
+.btn-primary{background:var(--gold);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.08em;padding:.55rem 1.4rem;cursor:pointer;transition:opacity .2s;}
+.btn-primary:hover{opacity:.85;}
+.btn-ghost{background:transparent;color:var(--muted2);border:1px solid var(--border2);font-family:'DM Sans',sans-serif;font-size:.78rem;padding:.5rem 1.2rem;cursor:pointer;}
+.btn-teal{background:var(--teal);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;padding:.4rem .9rem;cursor:pointer;}
+.btn-rose{background:var(--rose);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;padding:.4rem .9rem;cursor:pointer;}
+
+/* VIEWS */
+.view{display:none;}
+.view.active{display:flex;flex-direction:column;flex:1;overflow:hidden;}
+.inner-view{display:none;}
+.inner-view.active{display:block;}
+
+/* ── WORLD MAP ── */
+.map-container{position:relative;background:var(--bg3);overflow:hidden;}
+.map-svg{width:100%;display:block;}
+.country-shape{fill:rgba(201,169,110,0.06);stroke:rgba(201,169,110,0.18);stroke-width:.8;cursor:pointer;transition:fill .2s;}
+.country-shape:hover{fill:rgba(201,169,110,0.14);}
+.country-shape.selected{fill:rgba(201,169,110,0.2);stroke:var(--gold);stroke-width:1.5;}
+.seeker-bubble{cursor:pointer;transition:opacity .2s;}
+.seeker-bubble:hover{opacity:.8;}
+.bubble-circle{fill:var(--teal);opacity:.5;}
+.bubble-circle.highlight{fill:var(--gold);}
+.bubble-pulse{fill:none;stroke:var(--teal);stroke-width:1;opacity:.3;animation:mapPulse 3s ease-in-out infinite;}
+.bubble-pulse.highlight{stroke:var(--gold);}
+@keyframes mapPulse{0%,100%{r:0;opacity:.4}60%{opacity:0}}
+.bubble-label{fill:var(--text);font-family:'DM Mono',monospace;font-size:9px;text-anchor:middle;pointer-events:none;}
+
+/* COUNTRY DETAIL PANEL */
+.country-panel{position:absolute;top:8px;right:8px;width:220px;background:var(--bg2);border:1px solid var(--gold);padding:1rem;display:none;}
+.country-panel.visible{display:block;}
+.country-panel-close{position:absolute;top:.5rem;right:.7rem;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;}
+.country-panel-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);margin-bottom:.8rem;}
+.cp-row{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--border2);font-size:.78rem;}
+.cp-row:last-child{border-bottom:none;}
+.cp-label{color:var(--muted);}
+.cp-value{color:var(--text);font-weight:400;}
+
+/* SCHEDULE BOARD */
+.sched-item{padding:.9rem 1rem;border-bottom:1px solid var(--border2);display:flex;gap:1rem;align-items:flex-start;cursor:pointer;transition:background .15s;}
+.sched-item:hover{background:rgba(255,255,255,0.02);}
+.sched-item.changed{border-left:3px solid var(--rose);}
+.sched-date{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--gold);min-width:70px;padding-top:.15rem;}
+.sched-body{flex:1;}
+.sched-title{font-size:.82rem;color:var(--text);margin-bottom:.25rem;}
+.sched-sub{font-size:.72rem;color:var(--muted);}
+.sched-tag{font-size:.62rem;padding:.15rem .5rem;border-radius:3px;margin-left:.4rem;}
+.tag-zoom{background:rgba(79,169,154,0.15);color:var(--teal);}
+.tag-india{background:rgba(201,169,110,0.15);color:var(--gold);}
+.tag-changed{background:var(--rose-dim);color:var(--rose);}
+.sched-actions{display:flex;gap:.4rem;flex-shrink:0;}
+
+/* ORGANIZER TREE */
+.org-workspace{background:var(--bg3);border:1px solid var(--border2);margin-bottom:1rem;}
+.org-ws-head{display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem;border-bottom:1px solid var(--border2);cursor:pointer;}
+.org-ws-name{font-size:.88rem;color:var(--text);font-weight:400;}
+.org-ws-count{font-size:.72rem;color:var(--muted);margin-left:auto;}
+.org-team{padding:.6rem 1rem .6rem 2rem;border-bottom:1px solid rgba(255,255,255,0.03);}
+.org-team-name{font-size:.75rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;}
+.org-member{display:flex;align-items:center;gap:.7rem;padding:.35rem 0;}
+.org-avatar{width:24px;height:24px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.75rem;color:var(--gold);flex-shrink:0;}
+.org-avatar.teal{background:var(--teal-dim);border-color:var(--teal);color:var(--teal);}
+.org-name{font-size:.8rem;color:var(--text);}
+.org-role{font-size:.68rem;color:var(--muted);margin-left:.3rem;}
+.org-add{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--teal);cursor:pointer;padding:.3rem 0;margin-left:.5rem;}
+
+/* NOTES */
+.note-box{background:var(--bg3);border:1px solid rgba(201,169,110,0.15);padding:1rem;margin-bottom:.7rem;}
+.note-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;}
+.note-seeker{font-size:.82rem;color:var(--gold);}
+.note-date{font-size:.68rem;color:var(--muted);}
+.note-body{font-size:.8rem;color:var(--muted2);line-height:1.65;}
+.note-access{display:flex;gap:.4rem;margin-top:.7rem;align-items:center;}
+.note-access-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.access-tag{font-size:.62rem;padding:.15rem .5rem;background:var(--gold-dim);color:var(--gold);border-radius:3px;}
+
+/* APPLICATION */
+.app-box{background:var(--bg3);border:1px solid rgba(79,169,154,0.2);padding:1rem;margin-bottom:.7rem;}
+.app-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;}
+.app-course{font-size:.82rem;color:var(--teal);font-weight:400;}
+.app-status{font-size:.62rem;padding:.15rem .5rem;background:var(--teal-dim);color:var(--teal);border-radius:3px;}
+.app-q{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem;margin-top:.8rem;}
+.app-a{font-size:.8rem;color:var(--muted2);line-height:1.65;padding-left:.8rem;border-left:2px solid rgba(79,169,154,0.25);}
+
+/* MODAL OVERLAY */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.visible{display:flex;}
+.modal-box{background:var(--bg2);border:1px solid var(--border);width:680px;max-height:80vh;overflow-y:auto;position:relative;}
+.modal-head{padding:1.2rem 1.4rem;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:1;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;}
+.modal-title em{font-style:italic;color:var(--gold);}
+.modal-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.2rem;}
+.modal-body{padding:1.4rem;}
+.modal-tabs{display:flex;border-bottom:1px solid var(--border2);margin-bottom:1.2rem;}
+.modal-tab{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.1em;color:var(--muted2);padding:.6rem 1rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;}
+.modal-tab.active{color:var(--teal);border-bottom-color:var(--teal);}
+.modal-pane{display:none;}
+.modal-pane.active{display:block;}
+
+/* PHONE */
+.phone-area{flex:1;overflow-y:auto;padding:1.8rem 2rem;background:var(--bg);display:flex;gap:2rem;align-items:flex-start;justify-content:center;}
+.phone-frame{width:320px;flex-shrink:0;background:var(--bg2);border:1px solid var(--border2);border-radius:32px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6);}
+.phone-label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:.8rem;}
+.phone-bar{height:44px;background:var(--bg3);display:flex;align-items:center;justify-content:space-between;padding:0 1.2rem;font-size:.72rem;color:var(--muted);}
+.phone-bar-title{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--gold);letter-spacing:.08em;}
+.phone-scroll{height:620px;overflow-y:auto;padding:1rem;}
+.phone-scroll::-webkit-scrollbar{width:3px;}
+.phone-scroll::-webkit-scrollbar-thumb{background:var(--border);}
+.phone-nav{height:56px;background:var(--bg3);border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-around;}
+.nav-icon{text-align:center;cursor:pointer;}
+.nav-icon .ico{font-size:1.1rem;}
+.nav-icon .lbl{font-size:.55rem;color:var(--muted);margin-top:.1rem;letter-spacing:.05em;}
+.nav-icon.active .lbl{color:var(--gold);}
+
+/* SEEKER COMPONENTS */
+.seeker-id-card{background:linear-gradient(135deg,var(--bg3),rgba(201,169,110,0.05));border:1px solid var(--gold);border-radius:8px;padding:.9rem 1rem;margin-bottom:1rem;}
+.seeker-id-label{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);}
+.seeker-id-value{font-family:'DM Mono',monospace;font-size:.9rem;color:var(--gold);letter-spacing:.08em;margin-top:.3rem;}
+.seeker-id-name{font-size:.78rem;color:var(--muted2);margin-top:.2rem;}
+.section-head-s{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem;}
+.section-head-s::after{content:'';flex:1;height:1px;background:var(--teal-dim);}
+.course-card{background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:.8rem;margin-bottom:.6rem;display:flex;gap:.8rem;align-items:flex-start;}
+.course-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.course-icon.done{background:var(--green-dim);}
+.course-icon.next{background:var(--gold-dim);}
+.course-title-s{font-size:.82rem;color:var(--text);font-weight:400;}
+.course-meta-s{font-size:.7rem;color:var(--muted);margin-top:.2rem;}
+.next-card{background:linear-gradient(135deg,rgba(201,169,110,0.08),rgba(79,169,154,0.05));border:1px solid var(--gold);border-radius:8px;padding:1rem;margin-bottom:1rem;}
+.next-label{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;}
+.next-title{font-size:.9rem;color:var(--text);font-weight:400;margin-bottom:.2rem;}
+.next-theme{font-size:.75rem;color:var(--gold);font-style:italic;margin-bottom:.3rem;}
+.next-date{font-size:.72rem;color:var(--muted2);}
+.next-btn{margin-top:.7rem;background:var(--gold);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;padding:.4rem .9rem;border-radius:4px;cursor:pointer;letter-spacing:.05em;}
+.connection-card{background:var(--bg3);border:1px solid rgba(201,169,110,0.15);border-radius:6px;padding:.8rem;display:flex;gap:.7rem;align-items:center;margin-bottom:.5rem;}
+.con-avatar{width:32px;height:32px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--gold);flex-shrink:0;}
+.con-name{font-size:.8rem;color:var(--text);}
+.con-sub{font-size:.7rem;color:var(--muted);margin-top:.15rem;}
+.ss-session{background:var(--bg3);border:1px solid rgba(79,169,154,0.15);border-radius:6px;padding:.75rem;margin-bottom:.5rem;}
+.ss-row{display:flex;justify-content:space-between;align-items:center;}
+.ss-title-s{font-size:.8rem;color:var(--text);}
+.ss-meta{font-size:.68rem;color:var(--muted);margin-top:.3rem;}
+.ss-join{background:var(--teal-dim);border:1px solid var(--teal);color:var(--teal);font-family:'DM Sans',sans-serif;font-size:.65rem;padding:.25rem .65rem;border-radius:3px;cursor:pointer;}
+.global-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:.3rem .8rem;font-size:.7rem;color:var(--muted2);margin:.2rem;}
+.global-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-logo">✦ Oneness Campus</div>
+  <div class="topbar-tabs">
+    <button class="topbar-tab active" onclick="switchView('admin')">Organizer Dashboard</button>
+    <button class="topbar-tab" onclick="switchView('seeker')">Seeker App</button>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-user">
+      <div class="avatar">P</div>
+      <span>Purnimaji · EKAM</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN VIEW ══ -->
+<div class="view active" id="view-admin">
+  <div class="main">
+    <div class="sidebar">
+      <div class="sidebar-section">Overview</div>
+      <div class="sidebar-item active" onclick="switchAdmin('dashboard')"><span class="icon">◈</span>Dashboard</div>
+      <div class="sidebar-item" onclick="switchAdmin('courses')"><span class="icon">◎</span>Courses<span class="badge">12</span></div>
+      <div class="sidebar-item" onclick="switchAdmin('schedule')"><span class="icon">◌</span>Schedule<span class="badge-r">3</span></div>
+      <div class="sidebar-item" onclick="switchAdmin('participants')"><span class="icon">◉</span>Seekers</div>
+      <div class="sidebar-section">Communication</div>
+      <div class="sidebar-item" onclick="switchAdmin('notifications')"><span class="icon">◌</span>Notifications</div>
+      <div class="sidebar-item" onclick="switchAdmin('analytics')"><span class="icon">◈</span>Analytics</div>
+      <div class="sidebar-section">People</div>
+      <div class="sidebar-item" onclick="switchAdmin('organizers')"><span class="icon">◎</span>Organizers</div>
+      <div class="sidebar-item" onclick="switchAdmin('notes')"><span class="icon">◌</span>Dasaji Notes</div>
+      <div class="sidebar-item" onclick="switchAdmin('settings')"><span class="icon">◌</span>Access & Settings</div>
+    </div>
+
+    <div class="content" id="admin-content">
+
+      <!-- ── DASHBOARD ── -->
+      <div class="inner-view active" id="admin-dashboard">
+        <div class="page-header">
+          <div class="page-title">Movement <em>Overview</em></div>
+          <div class="page-sub">Global snapshot — updated in real time</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-card gold"><div class="stat-label">Total Seekers</div><div class="stat-value gold">8,241</div><div class="stat-sub">↑ 312 this month</div></div>
+          <div class="stat-card teal"><div class="stat-label">Active Countries</div><div class="stat-value teal">34</div><div class="stat-sub">Across 6 continents</div></div>
+          <div class="stat-card green"><div class="stat-label">Courses Running</div><div class="stat-value green">7</div><div class="stat-sub">Next 90 days</div></div>
+          <div class="stat-card rose"><div class="stat-label">Schedule Changes</div><div class="stat-value rose">3</div><div class="stat-sub">Pending notification</div></div>
+        </div>
+        <div class="two-col">
+          <!-- World Map -->
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Global Seeker Distribution</div>
+              <button class="panel-action" onclick="toggleMapMode()">View by Course →</button>
+            </div>
+            <div style="padding:0;position:relative;">
+              <div class="map-container" id="mapContainer">
+                <svg class="map-svg" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" id="worldSvg">
+                  <!-- North America -->
+                  <polygon class="country-shape" data-country="usa" points="100,80 170,72 195,85 210,105 220,130 205,155 185,168 155,172 130,158 108,135 95,108" onclick="showCountry('usa')"/>
+                  <!-- Mexico/Central Am -->
+                  <polygon class="country-shape" points="155,172 185,168 195,185 185,200 165,205 148,195" onclick="showCountry('mexico')"/>
+                  <!-- South America -->
+                  <polygon class="country-shape" data-country="brazil" points="165,205 195,200 225,208 240,235 238,270 220,295 195,300 175,280 162,255 158,228" onclick="showCountry('brazil')"/>
+                  <!-- UK/Europe -->
+                  <polygon class="country-shape" points="355,68 375,63 385,72 380,85 362,88 350,80"/>
+                  <!-- Germany/Central EU -->
+                  <polygon class="country-shape" data-country="germany" points="362,88 385,83 398,92 395,108 375,112 358,106" onclick="showCountry('germany')"/>
+                  <!-- South Europe -->
+                  <polygon class="country-shape" points="358,106 395,108 405,120 395,130 370,128 355,118"/>
+                  <!-- Africa West -->
+                  <polygon class="country-shape" points="345,128 395,125 400,145 395,175 375,195 352,188 338,165 335,145"/>
+                  <!-- Africa East -->
+                  <polygon class="country-shape" points="400,130 425,125 435,145 430,175 410,195 395,175 400,145"/>
+                  <!-- Africa South -->
+                  <polygon class="country-shape" points="355,188 410,188 415,215 400,235 375,240 355,225 345,205"/>
+                  <!-- Middle East -->
+                  <polygon class="country-shape" points="415,100 450,95 460,115 448,130 425,130 412,118"/>
+                  <!-- India -->
+                  <polygon class="country-shape" data-country="india" points="460,110 498,105 512,125 510,158 495,178 475,182 458,165 450,138" onclick="showCountry('india')"/>
+                  <!-- Southeast Asia -->
+                  <polygon class="country-shape" points="520,130 548,125 558,145 548,162 528,162 515,148"/>
+                  <!-- China -->
+                  <polygon class="country-shape" points="510,80 568,72 590,90 585,118 558,128 525,130 505,112"/>
+                  <!-- Japan -->
+                  <polygon class="country-shape" data-country="japan" points="582,88 600,82 610,95 605,110 590,115 578,105" onclick="showCountry('japan')"/>
+                  <!-- Australia -->
+                  <polygon class="country-shape" data-country="australia" points="548,230 610,222 628,245 622,275 595,285 565,280 548,258" onclick="showCountry('australia')"/>
+                  <!-- Russia/North Asia -->
+                  <polygon class="country-shape" points="390,42 560,35 590,58 585,78 510,78 450,72 390,60"/>
+
+                  <!-- SEEKER BUBBLES — sized by seeker count -->
+                  <!-- India: 2140 → r=22 -->
+                  <g class="seeker-bubble" onclick="showCountry('india')">
+                    <circle class="bubble-pulse highlight" cx="483" cy="145" r="8"><animate attributeName="r" from="22" to="42" dur="3s" repeatCount="indefinite"/></circle>
+                    <circle class="bubble-circle highlight" cx="483" cy="145" r="22" opacity=".55"/>
+                    <text class="bubble-label" x="483" y="149" style="fill:var(--gold);font-size:10px;font-weight:500;">2,140</text>
+                  </g>
+                  <!-- Japan: 1830 → r=19 -->
+                  <g class="seeker-bubble" onclick="showCountry('japan')">
+                    <circle class="bubble-pulse highlight" cx="594" cy="98" r="6"><animate attributeName="r" from="19" to="38" dur="3.2s" repeatCount="indefinite"/></circle>
+                    <circle class="bubble-circle highlight" cx="594" cy="98" r="19" opacity=".55"/>
+                    <text class="bubble-label" x="594" y="102" style="fill:var(--gold);font-size:9px;font-weight:500;">1,830</text>
+                  </g>
+                  <!-- USA: 980 → r=14 -->
+                  <g class="seeker-bubble" onclick="showCountry('usa')">
+                    <circle class="bubble-pulse" cx="158" cy="122" r="5"><animate attributeName="r" from="14" to="28" dur="3.5s" repeatCount="indefinite"/></circle>
+                    <circle class="bubble-circle" cx="158" cy="122" r="14" opacity=".6"/>
+                    <text class="bubble-label" x="158" y="126">980</text>
+                  </g>
+                  <!-- Germany: 640 → r=11 -->
+                  <g class="seeker-bubble" onclick="showCountry('germany')">
+                    <circle class="bubble-pulse" cx="378" cy="98" r="4"><animate attributeName="r" from="11" to="22" dur="4s" repeatCount="indefinite"/></circle>
+                    <circle class="bubble-circle" cx="378" cy="98" r="11" opacity=".6"/>
+                    <text class="bubble-label" x="378" y="101" style="font-size:8px;">640</text>
+                  </g>
+                  <!-- Australia: 420 → r=9 -->
+                  <g class="seeker-bubble" onclick="showCountry('australia')">
+                    <circle class="bubble-pulse" cx="587" cy="253" r="3"><animate attributeName="r" from="9" to="18" dur="4.2s" repeatCount="indefinite"/></circle>
+                    <circle class="bubble-circle" cx="587" cy="253" r="9" opacity=".6"/>
+                    <text class="bubble-label" x="587" y="256" style="font-size:7px;">420</text>
+                  </g>
+                  <!-- Brazil: 310 → r=8 -->
+                  <g class="seeker-bubble" onclick="showCountry('brazil')">
+                    <circle class="bubble-pulse" cx="200" cy="252" r="3"><animate attributeName="r" from="8" to="16" dur="3.8s" repeatCount="indefinite"/></circle>
+                    <circle class="bubble-circle" cx="200" cy="252" r="8" opacity=".6"/>
+                    <text class="bubble-label" x="200" y="255" style="font-size:7px;">310</text>
+                  </g>
+                </svg>
+
+                <!-- Country detail panel -->
+                <div class="country-panel" id="countryPanel">
+                  <button class="country-panel-close" onclick="closeCountry()">×</button>
+                  <div class="country-panel-name" id="cpName">Japan</div>
+                  <div class="cp-row"><span class="cp-label">Total Seekers</span><span class="cp-value" id="cpTotal">—</span></div>
+                  <div class="cp-row"><span class="cp-label">FOA Graduates</span><span class="cp-value" id="cpFOA">—</span></div>
+                  <div class="cp-row"><span class="cp-label">OWL Members</span><span class="cp-value" id="cpOWL">—</span></div>
+                  <div class="cp-row"><span class="cp-label">NOA Members</span><span class="cp-value" id="cpNOA">—</span></div>
+                  <div class="cp-row"><span class="cp-label">Organizer</span><span class="cp-value" id="cpOrg">—</span></div>
+                  <div style="margin-top:.8rem;">
+                    <button class="btn-teal" style="width:100%;font-size:.68rem;" onclick="switchAdmin('participants')">View Seekers →</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding:.8rem 1.2rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+                <div class="global-pill"><div class="global-dot" style="background:var(--gold)"></div>India 2,140</div>
+                <div class="global-pill"><div class="global-dot" style="background:var(--gold)"></div>Japan 1,830</div>
+                <div class="global-pill"><div class="global-dot"></div>USA 980</div>
+                <div class="global-pill"><div class="global-dot"></div>Germany 640</div>
+                <div class="global-pill"><div class="global-dot"></div>+30 more</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Courses -->
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Upcoming Courses</div>
+              <button class="panel-action" onclick="switchAdmin('courses')">Manage →</button>
+            </div>
+            <div style="padding:0;">
+              <table class="table">
+                <thead><tr><th>Course & Theme</th><th>Date</th><th>Venue</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="bright" style="font-size:.8rem;">OWL</div>
+                      <div style="font-size:.72rem;color:var(--gold);font-style:italic;">Karmic Liberation</div>
+                    </td>
+                    <td style="font-size:.76rem;">May 2026</td>
+                    <td style="font-size:.72rem;color:var(--muted);">Oneness Univ.<br>India</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="bright" style="font-size:.8rem;">OWL</div>
+                      <div style="font-size:.72rem;color:var(--gold);font-style:italic;">For More Magnificent Life</div>
+                    </td>
+                    <td style="font-size:.76rem;">Aug 2026</td>
+                    <td style="font-size:.72rem;color:var(--muted);">Japan</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="bright" style="font-size:.8rem;">FOA</div>
+                      <div style="font-size:.72rem;color:var(--teal);font-style:italic;">Field of Awakening</div>
+                    </td>
+                    <td style="font-size:.76rem;">Apr 2026</td>
+                    <td style="font-size:.72rem;color:var(--muted);">Oneness Univ.<br>India</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="bright" style="font-size:.8rem;">NOA</div>
+                      <div style="font-size:.72rem;color:var(--green);font-style:italic;">Network of Achievers</div>
+                    </td>
+                    <td style="font-size:.76rem;">Jul 2026</td>
+                    <td style="font-size:.72rem;color:var(--muted);">TBD</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="bright" style="font-size:.8rem;">Tapas</div>
+                      <div style="font-size:.72rem;color:var(--muted2);font-style:italic;">Intensive Practice</div>
+                    </td>
+                    <td style="font-size:.76rem;">Jun 2026</td>
+                    <td style="font-size:.72rem;color:var(--muted);">Online / Zoom</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SCHEDULE ── -->
+      <div class="inner-view" id="admin-schedule">
+        <div class="page-header">
+          <div class="page-title">Schedule <em>Management</em></div>
+          <div class="page-sub">Real-time updates — changes notify all relevant seekers and organizers instantly</div>
+        </div>
+        <div class="two-col" style="align-items:start;">
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Master Calendar</div>
+              <button class="btn-primary" style="font-size:.7rem;padding:.35rem .9rem;" onclick="alert('Schedule update sent to 847 seekers')">+ Add / Update Event</button>
+            </div>
+            <div style="padding:0;">
+              <div class="sched-item">
+                <div class="sched-date">Apr 5–12</div>
+                <div class="sched-body">
+                  <div class="sched-title">FOA — Field of Awakening<span class="sched-tag tag-india">India · In-Person</span></div>
+                  <div class="sched-sub">Facilitator: Sri Preethaji · Oneness University, India · 240 registered</div>
+                </div>
+                <div class="sched-actions"><button class="btn-ghost" style="font-size:.68rem;padding:.3rem .7rem;">Edit</button></div>
+              </div>
+              <div class="sched-item">
+                <div class="sched-date">Apr 15</div>
+                <div class="sched-body">
+                  <div class="sched-title">OWL Pre-session Call<span class="sched-tag tag-zoom">Zoom</span></div>
+                  <div class="sched-sub">Facilitator: Purnimaji · 10:00 AM IST · 847 registered</div>
+                </div>
+                <div class="sched-actions"><button class="btn-ghost" style="font-size:.68rem;padding:.3rem .7rem;">Edit</button></div>
+              </div>
+              <div class="sched-item changed">
+                <div class="sched-date" style="color:var(--rose);">May 10–20</div>
+                <div class="sched-body">
+                  <div class="sched-title">OWL — Karmic Liberation<span class="sched-tag tag-india">India · In-Person</span><span class="sched-tag tag-changed">Date Changed</span></div>
+                  <div class="sched-sub">Was May 7–17 → Updated to May 10–20 · Facilitator: Sri Krishnaji · 847 registered</div>
+                </div>
+                <div class="sched-actions">
+                  <button class="btn-rose" style="font-size:.68rem;padding:.3rem .7rem;" onclick="alert('Notification sent to 847 seekers: OWL date updated to May 10–20')">Notify All</button>
+                </div>
+              </div>
+              <div class="sched-item changed">
+                <div class="sched-date" style="color:var(--rose);">May 25</div>
+                <div class="sched-body">
+                  <div class="sched-title">OWL Follow-up — Deepening<span class="sched-tag tag-zoom">Zoom</span><span class="sched-tag tag-changed">New</span></div>
+                  <div class="sched-sub">Ananda Giriji · Added to calendar · Notify OWL May participants</div>
+                </div>
+                <div class="sched-actions">
+                  <button class="btn-rose" style="font-size:.68rem;padding:.3rem .7rem;" onclick="alert('Notification sent to OWL May participants')">Notify</button>
+                </div>
+              </div>
+              <div class="sched-item">
+                <div class="sched-date">Jun 2026</div>
+                <div class="sched-body">
+                  <div class="sched-title">Tapas — Intensive Practice<span class="sched-tag tag-zoom">Zoom</span></div>
+                  <div class="sched-sub">Facilitator: Dasaji · Dates TBC · FOA graduates eligible</div>
+                </div>
+                <div class="sched-actions"><button class="btn-ghost" style="font-size:.68rem;padding:.3rem .7rem;">Edit</button></div>
+              </div>
+              <div class="sched-item">
+                <div class="sched-date">Aug 2026</div>
+                <div class="sched-body">
+                  <div class="sched-title">OWL — For More Magnificent Life<span class="sched-tag" style="background:rgba(201,169,110,0.15);color:var(--gold);">Japan · In-Person</span></div>
+                  <div class="sched-sub">Facilitator: Sri Preethaji · Tokyo, Japan · Registration opens soon</div>
+                </div>
+                <div class="sched-actions"><button class="btn-ghost" style="font-size:.68rem;padding:.3rem .7rem;">Edit</button></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="panel" style="margin-bottom:1rem;">
+              <div class="panel-head"><div class="panel-title">Pending Notifications</div></div>
+              <div style="padding:.9rem 1rem;display:flex;flex-direction:column;gap:.7rem;">
+                <div style="padding:.8rem;background:var(--bg3);border-left:3px solid var(--rose);">
+                  <div style="font-size:.78rem;color:var(--text);margin-bottom:.3rem;">OWL May — date changed</div>
+                  <div style="font-size:.7rem;color:var(--muted);margin-bottom:.6rem;">847 seekers not yet notified</div>
+                  <button class="btn-rose" style="font-size:.68rem;width:100%;" onclick="alert('Sent to 847 seekers in 12 languages')">Send Now — 847 Seekers (12 languages)</button>
+                </div>
+                <div style="padding:.8rem;background:var(--bg3);border-left:3px solid var(--rose);">
+                  <div style="font-size:.78rem;color:var(--text);margin-bottom:.3rem;">OWL Follow-up added</div>
+                  <div style="font-size:.7rem;color:var(--muted);margin-bottom:.6rem;">OWL May participants not notified</div>
+                  <button class="btn-ghost" style="font-size:.68rem;width:100%;">Send to OWL May Group</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><div class="panel-title">Facilitator Schedule</div></div>
+              <div style="padding:.9rem 1rem;font-size:.8rem;color:var(--muted2);">
+                <div style="margin-bottom:.7rem;display:flex;gap:.6rem;align-items:center;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;"></div>
+                  <div><div style="color:var(--text);">Sri Preethaji</div><div style="font-size:.7rem;color:var(--muted);">FOA Apr · OWL Aug · Touring Europe Jun</div></div>
+                </div>
+                <div style="margin-bottom:.7rem;display:flex;gap:.6rem;align-items:center;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;"></div>
+                  <div><div style="color:var(--text);">Sri Krishnaji</div><div style="font-size:.7rem;color:var(--muted);">OWL May · NOA Jul</div></div>
+                </div>
+                <div style="margin-bottom:.7rem;display:flex;gap:.6rem;align-items:center;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;"></div>
+                  <div><div style="color:var(--text);">Ananda Giriji</div><div style="font-size:.7rem;color:var(--muted);">OWL Follow-ups · Deepening sessions</div></div>
+                </div>
+                <div style="display:flex;gap:.6rem;align-items:center;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;"></div>
+                  <div><div style="color:var(--text);">Purnimaji</div><div style="font-size:.7rem;color:var(--muted);">OWL Pre-calls · FOA Follow-ups</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── COURSES ── -->
+      <div class="inner-view" id="admin-courses">
+        <div class="page-header">
+          <div class="page-title">Course <em>Management</em></div>
+          <div class="page-sub">Register and manage all events — changes auto-notify eligible seekers</div>
+        </div>
+        <div class="two-col" style="align-items:start;">
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Register New Course</div></div>
+            <div style="padding:1.2rem;">
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Course Type</label>
+                  <select class="form-select">
+                    <option>Oneness World Leaders (OWL)</option>
+                    <option>Field of Awakening (FOA)</option>
+                    <option>Tapas</option>
+                    <option>NOA</option>
+                    <option>Abundance Festival</option>
+                    <option>Manifest</option>
+                    <option>Follow-up / Deepening</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Theme / Sub-title</label>
+                  <input class="form-input" placeholder="e.g. Karmic Liberation">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Start Date</label>
+                  <input class="form-input" type="date" value="2026-05-10">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">End Date</label>
+                  <input class="form-input" type="date" value="2026-05-20">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Venue / Location</label>
+                  <input class="form-input" placeholder="e.g. Oneness University, India">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Format</label>
+                  <select class="form-select">
+                    <option>In-Person (India)</option>
+                    <option>In-Person (Local)</option>
+                    <option>Zoom / Online</option>
+                    <option>Hybrid</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Facilitator</label>
+                  <select class="form-select">
+                    <option>Sri Preethaji</option>
+                    <option>Sri Krishnaji</option>
+                    <option>Ananda Giriji</option>
+                    <option>Dasaji</option>
+                    <option>Purnimaji</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Prerequisite</label>
+                  <select class="form-select">
+                    <option>None (Open to all)</option>
+                    <option>FOA required</option>
+                    <option>FOA + Tapas required</option>
+                    <option>NOA required</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-field" style="margin-bottom:1.2rem;">
+                <label class="form-label">External LP URL (optional)</label>
+                <input class="form-input" placeholder="https://...">
+              </div>
+              <div style="display:flex;gap:.7rem;">
+                <button class="btn-primary" onclick="alert('Course registered. Eligible seekers notified.')">Register & Notify</button>
+                <button class="btn-ghost">Save Draft</button>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Auto-Notify on Publish</div></div>
+            <div style="padding:1.2rem;">
+              <p style="font-size:.8rem;color:var(--muted2);margin-bottom:.8rem;">When registered, automatically notify:</p>
+              <div style="display:flex;flex-direction:column;gap:.5rem;">
+                <label style="display:flex;gap:.7rem;align-items:center;font-size:.8rem;color:var(--muted2);cursor:pointer;"><input type="checkbox" checked> Eligible seekers only (based on prerequisites)</label>
+                <label style="display:flex;gap:.7rem;align-items:center;font-size:.8rem;color:var(--muted2);cursor:pointer;"><input type="checkbox" checked> Local organizers in target countries</label>
+                <label style="display:flex;gap:.7rem;align-items:center;font-size:.8rem;color:var(--muted2);cursor:pointer;"><input type="checkbox"> FOA / NOA group leaders</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PARTICIPANTS ── -->
+      <div class="inner-view" id="admin-participants">
+        <div class="page-header">
+          <div class="page-title">Seeker <em>Database</em></div>
+          <div class="page-sub">8,241 registered seekers across 34 countries</div>
+        </div>
+        <div class="panel" style="margin-bottom:1.2rem;">
+          <div class="panel-head">
+            <div style="display:flex;gap:.6rem;align-items:center;flex:1;flex-wrap:wrap;">
+              <input class="form-input" placeholder="Search by name, ID, city..." style="width:240px;">
+              <select class="form-select" style="width:150px;"><option>All Courses</option><option>FOA only</option><option>OWL eligible</option></select>
+              <select class="form-select" style="width:120px;"><option>All Countries</option><option>Japan</option><option>India</option><option>Germany</option></select>
+              <select class="form-select" style="width:130px;"><option>All Languages</option><option>English OK</option><option>Needs interpreter</option></select>
+              <button class="btn-primary" style="font-size:.72rem;padding:.45rem 1rem;">Filter</button>
+            </div>
+            <button class="panel-action">Export →</button>
+          </div>
+          <div style="padding:0;">
+            <table class="table">
+              <thead><tr>
+                <th>Oneness ID</th><th>Name</th><th>Region</th><th>Language</th><th>Courses</th><th>Next Step</th><th>Notes</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td><span style="font-family:'DM Mono';font-size:.72rem;color:var(--gold)">OC-JP-00847</span></td>
+                  <td class="bright">Kazuto Yasuda</td>
+                  <td style="font-size:.75rem;">Tokyo, Japan</td>
+                  <td><span class="pill lang-en">EN ✓</span></td>
+                  <td><span class="pill foa">FOA</span> <span class="pill done">Tapas</span> <span class="pill done">Abund.</span></td>
+                  <td><span class="pill owl">OWL ↑</span></td>
+                  <td><button class="btn-ghost" style="font-size:.65rem;padding:.2rem .5rem;" onclick="openSeekerModal()">View</button></td>
+                </tr>
+                <tr>
+                  <td><span style="font-family:'DM Mono';font-size:.72rem;color:var(--gold)">OC-IN-02341</span></td>
+                  <td class="bright">Priya Sharma</td>
+                  <td style="font-size:.75rem;">Mumbai, India</td>
+                  <td><span class="pill lang-en">EN ✓</span></td>
+                  <td><span class="pill foa">FOA</span></td>
+                  <td><span class="pill upcoming">Tapas ↑</span></td>
+                  <td><button class="btn-ghost" style="font-size:.65rem;padding:.2rem .5rem;" onclick="openSeekerModal()">View</button></td>
+                </tr>
+                <tr>
+                  <td><span style="font-family:'DM Mono';font-size:.72rem;color:var(--gold)">OC-DE-00512</span></td>
+                  <td class="bright">Klaus Weber</td>
+                  <td style="font-size:.75rem;">Berlin, Germany</td>
+                  <td><span class="pill lang-en">EN ✓</span></td>
+                  <td><span class="pill foa">FOA</span> <span class="pill done">Tapas</span> <span class="pill noa">NOA</span></td>
+                  <td><span class="pill owl">OWL ↑</span></td>
+                  <td><button class="btn-ghost" style="font-size:.65rem;padding:.2rem .5rem;">View</button></td>
+                </tr>
+                <tr>
+                  <td><span style="font-family:'DM Mono';font-size:.72rem;color:var(--gold)">OC-JP-00231</span></td>
+                  <td class="bright">Hiroshi Nishijima</td>
+                  <td style="font-size:.75rem;">Tokyo, Japan</td>
+                  <td><span class="pill lang-jp">JP only</span><span class="pill lang-need" style="margin-left:.3rem;">Interp.</span></td>
+                  <td><span class="pill foa">FOA</span> <span class="pill done">Tapas</span> <span class="pill owl">OWL</span></td>
+                  <td><span class="pill planning">Deepening</span></td>
+                  <td><button class="btn-ghost" style="font-size:.65rem;padding:.2rem .5rem;">View</button></td>
+                </tr>
+                <tr>
+                  <td><span style="font-family:'DM Mono';font-size:.72rem;color:var(--gold)">OC-JP-01142</span></td>
+                  <td class="bright">Yuki Tanaka</td>
+                  <td style="font-size:.75rem;">Sapporo, Japan</td>
+                  <td><span class="pill lang-jp">JP only</span></td>
+                  <td><span class="pill foa">FOA</span></td>
+                  <td><span class="pill upcoming">Tapas ↑</span></td>
+                  <td><button class="btn-ghost" style="font-size:.65rem;padding:.2rem .5rem;">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── NOTIFICATIONS ── -->
+      <div class="inner-view" id="admin-notifications">
+        <div class="page-header">
+          <div class="page-title">Push <em>Notifications</em></div>
+          <div class="page-sub">Send targeted updates — auto-translated per seeker language</div>
+        </div>
+        <div class="two-col" style="align-items:start;">
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Send Notification</div></div>
+            <div style="padding:1.2rem;">
+              <div class="form-field" style="margin-bottom:.8rem;">
+                <label class="form-label">Target Audience</label>
+                <select class="form-select">
+                  <option>All seekers registered for OWL May 2026 (847)</option>
+                  <option>All FOA graduates — OWL eligible (3,200)</option>
+                  <option>All seekers — Japan only (1,830)</option>
+                  <option>All organizers worldwide</option>
+                </select>
+              </div>
+              <div class="form-field" style="margin-bottom:.8rem;">
+                <label class="form-label">Message</label>
+                <textarea class="form-input" rows="4" style="resize:vertical;">The OWL May 2026 dates have been updated to May 10–20. Please check the app for the revised schedule.</textarea>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--border2);padding:.7rem;margin-bottom:.8rem;font-size:.75rem;color:var(--muted2);">
+                <div style="color:var(--teal);margin-bottom:.3rem;">🌐 Auto-translation preview</div>
+                <div>JP: OWL 5月コースの日程が5/10〜5/20に変更されました...</div>
+                <div style="margin-top:.2rem;color:var(--muted);">+ 11 more languages</div>
+              </div>
+              <button class="btn-primary" onclick="alert('Sent to 847 seekers in 12 languages!')">Send to 847 Seekers</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Recent Sent</div></div>
+            <div style="padding:0;">
+              <div style="padding:.8rem 1rem;border-bottom:1px solid var(--border2);">
+                <div style="font-size:.78rem;color:var(--text);">OWL May — early bird reminder</div>
+                <div style="font-size:.7rem;color:var(--muted);margin-top:.2rem;">847 seekers · 94% opened · Mar 25</div>
+              </div>
+              <div style="padding:.8rem 1rem;border-bottom:1px solid var(--border2);">
+                <div style="font-size:.78rem;color:var(--text);">FOA April — registration open</div>
+                <div style="font-size:.7rem;color:var(--muted);margin-top:.2rem;">3,200 seekers · 88% opened · Mar 20</div>
+              </div>
+              <div style="padding:.8rem 1rem;">
+                <div style="font-size:.78rem;color:var(--text);">Abundance Festival — recap</div>
+                <div style="font-size:.7rem;color:var(--muted);margin-top:.2rem;">1,100 seekers · 91% opened · Mar 22</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ANALYTICS ── -->
+      <div class="inner-view" id="admin-analytics">
+        <div class="page-header">
+          <div class="page-title">Movement <em>Analytics</em></div>
+          <div class="page-sub">Data-driven decisions for strategic resource allocation</div>
+        </div>
+        <div class="three-col">
+          <div class="panel"><div class="panel-head"><div class="panel-title">FOA Graduates</div></div><div style="padding:1.2rem;text-align:center;"><div style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--teal);">6,840</div><div style="font-size:.75rem;color:var(--muted);margin-top:.3rem;">↑ 18% YoY</div></div></div>
+          <div class="panel"><div class="panel-head"><div class="panel-title">OWL Members</div></div><div style="padding:1.2rem;text-align:center;"><div style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);">412</div><div style="font-size:.75rem;color:var(--muted);margin-top:.3rem;">Active leaders · ↑ 24% YoY</div></div></div>
+          <div class="panel"><div class="panel-head"><div class="panel-title">Course Continuation</div></div><div style="padding:1.2rem;text-align:center;"><div style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--green);">73%</div><div style="font-size:.75rem;color:var(--muted);margin-top:.3rem;">Proceed to next course</div></div></div>
+        </div>
+        <div class="two-col" style="align-items:start;">
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Regional Breakdown</div></div>
+            <div style="padding:0;">
+              <table class="table">
+                <thead><tr><th>Country / Region</th><th>FOA</th><th>OWL</th><th>Growth</th></tr></thead>
+                <tbody>
+                  <tr><td class="bright">India (all regions)</td><td>2,140</td><td>98</td><td style="color:var(--green)">↑ 22%</td></tr>
+                  <tr><td class="bright">Japan — Tokyo</td><td>1,240</td><td>64</td><td style="color:var(--green)">↑ 35%</td></tr>
+                  <tr><td class="bright">Japan — Other</td><td>590</td><td>20</td><td style="color:var(--green)">↑ 18%</td></tr>
+                  <tr><td class="bright">USA</td><td>980</td><td>52</td><td style="color:var(--green)">↑ 15%</td></tr>
+                  <tr><td class="bright">Germany</td><td>640</td><td>38</td><td style="color:var(--green)">↑ 19%</td></tr>
+                  <tr><td class="bright">Brazil</td><td>310</td><td>12</td><td style="color:var(--rose)">↓ 3%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Strategic Insights</div></div>
+            <div style="padding:1rem;display:flex;flex-direction:column;gap:.9rem;">
+              <div style="padding:.8rem;background:var(--bg3);border-left:3px solid var(--teal);">
+                <div style="font-size:.75rem;color:var(--text);margin-bottom:.3rem;">↑ Tokyo cluster — strongest growth</div>
+                <div style="font-size:.72rem;color:var(--muted);">35% YoY. Additional OWL cohort in Japan could accelerate further.</div>
+              </div>
+              <div style="padding:.8rem;background:var(--bg3);border-left:3px solid var(--rose);">
+                <div style="font-size:.75rem;color:var(--text);margin-bottom:.3rem;">⚠ Brazil — follow-up rate declining</div>
+                <div style="font-size:.72rem;color:var(--muted);">FOA→Tapas at 42% vs 68% global avg. Local organizer support needed.</div>
+              </div>
+              <div style="padding:.8rem;background:var(--bg3);border-left:3px solid var(--gold);">
+                <div style="font-size:.75rem;color:var(--text);margin-bottom:.3rem;">✦ OWL pipeline — globally strong</div>
+                <div style="font-size:.72rem;color:var(--muted);">847 seekers currently OWL-eligible. May cohort projected to be oversubscribed.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ORGANIZERS ── -->
+      <div class="inner-view" id="admin-organizers">
+        <div class="page-header">
+          <div class="page-title">Organizer <em>Network</em></div>
+          <div class="page-sub">Workspaces → Teams → Members. Manage access per role.</div>
+        </div>
+        <!-- Oneness Japan -->
+        <div class="org-workspace">
+          <div class="org-ws-head">
+            <span style="font-size:1rem;">🇯🇵</span>
+            <div class="org-ws-name">Oneness Japan</div>
+            <span class="org-ws-count">1,830 seekers · 3 teams · 12 members</span>
+            <button class="btn-ghost" style="font-size:.68rem;padding:.25rem .65rem;">+ Invite</button>
+          </div>
+          <div class="org-team">
+            <div class="org-team-name">Core Organizers</div>
+            <div class="org-member"><div class="org-avatar">Y</div><div><span class="org-name">Yasu-kun</span><span class="org-role">— Core Organizer · OWL Member</span></div></div>
+            <div class="org-member"><div class="org-avatar">H</div><div><span class="org-name">Hiroshi Nishijima</span><span class="org-role">— FOA Leader · OWL Member</span></div></div>
+            <div class="org-add">+ Add member</div>
+          </div>
+          <div class="org-team">
+            <div class="org-team-name">Marketing Team</div>
+            <div class="org-member"><div class="org-avatar teal">S</div><div><span class="org-name">Shibuya-san</span><span class="org-role">— Marketing Lead</span></div></div>
+            <div class="org-member"><div class="org-avatar teal">D</div><div><span class="org-name">Daichan</span><span class="org-role">— Marketing</span></div></div>
+            <div class="org-add">+ Add member</div>
+          </div>
+          <div class="org-team">
+            <div class="org-team-name">Translation & Interpretation</div>
+            <div class="org-member"><div class="org-avatar teal">K</div><div><span class="org-name">Kaori-san</span><span class="org-role">— Interpreter · EN↔JP</span></div></div>
+            <div class="org-member"><div class="org-avatar teal">M</div><div><span class="org-name">Mio-san</span><span class="org-role">— Interpreter · EN↔JP</span></div></div>
+            <div class="org-add">+ Add member</div>
+          </div>
+        </div>
+        <!-- EKAM India -->
+        <div class="org-workspace">
+          <div class="org-ws-head">
+            <span style="font-size:1rem;">🇮🇳</span>
+            <div class="org-ws-name">EKAM — India</div>
+            <span class="org-ws-count">2,140 seekers · Admin access</span>
+            <button class="btn-ghost" style="font-size:.68rem;padding:.25rem .65rem;">Manage</button>
+          </div>
+          <div class="org-team">
+            <div class="org-team-name">Core Team</div>
+            <div class="org-member"><div class="org-avatar">P</div><div><span class="org-name">Purnimaji</span><span class="org-role">— Senior · Global Admin</span></div></div>
+            <div class="org-member"><div class="org-avatar">A</div><div><span class="org-name">Ananda Giriji</span><span class="org-role">— Senior · Global Admin</span></div></div>
+          </div>
+        </div>
+        <!-- Oneness Germany -->
+        <div class="org-workspace">
+          <div class="org-ws-head">
+            <span style="font-size:1rem;">🇩🇪</span>
+            <div class="org-ws-name">Oneness Germany</div>
+            <span class="org-ws-count">640 seekers · 2 teams · 6 members</span>
+            <button class="btn-ghost" style="font-size:.68rem;padding:.25rem .65rem;">Manage</button>
+          </div>
+        </div>
+        <div style="padding:1rem 0;">
+          <button class="btn-ghost">+ Add New Country Workspace</button>
+        </div>
+      </div>
+
+      <!-- ── DASAJI NOTES ── -->
+      <div class="inner-view" id="admin-notes">
+        <div class="page-header">
+          <div class="page-title">Dasaji <em>Notes</em></div>
+          <div class="page-sub">Private seeker notes — visible to Dasaji, Sri Preethaji, Sri Krishnaji only</div>
+        </div>
+        <div style="background:var(--rose-dim);border:1px solid var(--rose);padding:.8rem 1rem;margin-bottom:1.5rem;font-size:.8rem;color:var(--rose);">
+          🔒 These notes are private. Organizers cannot view unless explicitly granted access per seeker.
+        </div>
+        <div class="two-col" style="align-items:start;">
+          <div>
+            <div class="note-box">
+              <div class="note-header">
+                <div class="note-seeker">Kazuto Yasuda <span style="font-family:'DM Mono';font-size:.7rem;color:var(--muted);">OC-JP-00847</span></div>
+                <div class="note-date">Interview: Mar 15, 2026</div>
+              </div>
+              <div class="note-body">Strong technological background — 20+ years in SaaS. Deep structural thinking (Robert Fritz). Has experienced significant opening around "fear of exclusion" — released at Abundance Festival. Highly motivated for OWL. Vision for Oneness Campus ID platform is coherent and potentially impactful. Recommend for May cohort.</div>
+              <div class="note-access">
+                <span class="note-access-label">Visible to:</span>
+                <span class="access-tag">Dasaji</span>
+                <span class="access-tag">Sri Preethaji</span>
+                <span class="access-tag">Sri Krishnaji</span>
+              </div>
+            </div>
+            <div class="note-box">
+              <div class="note-header">
+                <div class="note-seeker">Klaus Weber <span style="font-family:'DM Mono';font-size:.7rem;color:var(--muted);">OC-DE-00512</span></div>
+                <div class="note-date">Interview: Feb 8, 2026</div>
+              </div>
+              <div class="note-body">Corporate leadership background. Strong group energy. Ready for deeper commitment. Some resistance around surrender — worth monitoring in OWL container. Beneficial presence for the group dynamic.</div>
+              <div class="note-access">
+                <span class="note-access-label">Visible to:</span>
+                <span class="access-tag">Dasaji</span>
+                <span class="access-tag">Sri Krishnaji</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Add Note</div></div>
+            <div style="padding:1.2rem;">
+              <div class="form-field" style="margin-bottom:.8rem;">
+                <label class="form-label">Seeker</label>
+                <input class="form-input" placeholder="Search by name or ID...">
+              </div>
+              <div class="form-field" style="margin-bottom:.8rem;">
+                <label class="form-label">Note</label>
+                <textarea class="form-input" rows="5" style="resize:vertical;" placeholder="Interview notes, observations, recommendations..."></textarea>
+              </div>
+              <div class="form-field" style="margin-bottom:1rem;">
+                <label class="form-label">Visible to</label>
+                <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.3rem;">
+                  <label style="display:flex;gap:.6rem;align-items:center;font-size:.78rem;color:var(--muted2);"><input type="checkbox" checked> Dasaji</label>
+                  <label style="display:flex;gap:.6rem;align-items:center;font-size:.78rem;color:var(--muted2);"><input type="checkbox" checked> Sri Preethaji & Sri Krishnaji</label>
+                  <label style="display:flex;gap:.6rem;align-items:center;font-size:.78rem;color:var(--muted2);"><input type="checkbox"> Ananda Giriji</label>
+                  <label style="display:flex;gap:.6rem;align-items:center;font-size:.78rem;color:var(--muted2);"><input type="checkbox"> Local Organizer (specific grant)</label>
+                </div>
+              </div>
+              <button class="btn-primary">Save Note</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div class="inner-view" id="admin-settings">
+        <div class="page-header">
+          <div class="page-title">Access <em>&amp; Settings</em></div>
+          <div class="page-sub">Role-based access control across all system features</div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Permission Matrix</div></div>
+          <div style="padding:0;">
+            <table class="table">
+              <thead><tr><th>Feature</th><th>EKAM Admin</th><th>Organizer</th><th>Team Member</th><th>Dasaji</th></tr></thead>
+              <tbody>
+                <tr><td class="bright">Dashboard</td><td><span class="pill done">Full</span></td><td><span class="pill done">Full</span></td><td><span class="pill upcoming">Read</span></td><td><span class="pill done">Full</span></td></tr>
+                <tr><td class="bright">Seeker Database</td><td><span class="pill done">Full</span></td><td><span class="pill upcoming">Own country</span></td><td><span class="pill planning">No</span></td><td><span class="pill done">Full</span></td></tr>
+                <tr><td class="bright">Schedule</td><td><span class="pill done">Full</span></td><td><span class="pill upcoming">Edit + Notify</span></td><td><span class="pill upcoming">Read</span></td><td><span class="pill upcoming">Read</span></td></tr>
+                <tr><td class="bright">Dasaji Notes</td><td><span class="pill planning">No</span></td><td><span class="pill planning">No</span></td><td><span class="pill planning">No</span></td><td><span class="pill done">Full</span></td></tr>
+                <tr><td class="bright">Notifications</td><td><span class="pill done">Full</span></td><td><span class="pill upcoming">Own country</span></td><td><span class="pill planning">No</span></td><td><span class="pill planning">No</span></td></tr>
+                <tr><td class="bright">Analytics</td><td><span class="pill done">Full</span></td><td><span class="pill upcoming">Own country</span></td><td><span class="pill planning">No</span></td><td><span class="pill upcoming">Read</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /main -->
+</div><!-- /view-admin -->
+
+<!-- ══ SEEKER VIEW ══ -->
+<div class="view" id="view-seeker">
+  <div class="phone-area">
+    <!-- Phone 1: My Journey -->
+    <div>
+      <div class="phone-label">MY JOURNEY</div>
+      <div class="phone-frame">
+        <div class="phone-bar"><span>9:41</span><div class="phone-bar-title">✦ Oneness</div><span>●●●</span></div>
+        <div class="phone-scroll">
+          <div style="margin-bottom:.8rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;">Namaste, <em style="color:var(--gold)">Kazuto</em></div>
+            <div style="font-size:.72rem;color:var(--muted2);margin-top:.2rem;">Your awakening journey continues</div>
+          </div>
+          <div class="seeker-id-card">
+            <div class="seeker-id-label">Oneness Campus ID</div>
+            <div class="seeker-id-value">OC-JP-00847</div>
+            <div class="seeker-id-name">Kazuto Yasuda · Tokyo, Japan</div>
+          </div>
+          <div class="next-card">
+            <div class="next-label">✦ Recommended Next</div>
+            <div class="next-title">Oneness World Leaders (OWL)</div>
+            <div class="next-theme">Karmic Liberation</div>
+            <div class="next-date">📅 May 10–20, 2026 · Oneness University, India</div>
+            <button class="next-btn">Register Interest →</button>
+          </div>
+          <div class="section-head-s">My Courses</div>
+          <div class="course-card"><div class="course-icon done">🌅</div><div><div class="course-title-s">Field of Awakening (FOA)</div><div class="course-meta-s">✓ Jan 2024 · Oneness Univ., India</div></div></div>
+          <div class="course-card"><div class="course-icon done">🔥</div><div><div class="course-title-s">Tapas</div><div class="course-meta-s">✓ Jun 2024 · Online / Zoom</div></div></div>
+          <div class="course-card"><div class="course-icon done">✨</div><div><div class="course-title-s">Abundance Festival</div><div class="course-meta-s">✓ Mar 2026 · Japan</div></div></div>
+          <div class="course-card"><div class="course-icon next">🦉</div><div><div class="course-title-s">OWL — Karmic Liberation</div><div class="course-meta-s">⏳ May 2026 · India</div></div></div>
+          <div class="section-head-s" style="margin-top:1rem;">My Applications</div>
+          <div style="background:var(--bg3);border:1px solid rgba(79,169,154,0.2);border-radius:6px;padding:.85rem;margin-bottom:.6rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;">
+              <div style="font-size:.82rem;color:var(--text);">OWL — Karmic Liberation</div>
+              <span style="font-size:.6rem;padding:.15rem .5rem;background:var(--teal-dim);color:var(--teal);border-radius:3px;">Submitted</span>
+            </div>
+            <div style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;">Profession & Passion</div>
+            <div style="font-size:.75rem;color:var(--muted2);line-height:1.55;margin-bottom:.6rem;">Co-founder of DeployGate & U2C. Most passionate about merging technology with consciousness to support the Oneness Movement.</div>
+            <div style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;">World Impact</div>
+            <div style="font-size:.75rem;color:var(--muted2);line-height:1.55;margin-bottom:.6rem;">Building Oneness Campus ID — a universal identity platform for seekers worldwide. Digital infrastructure for the Movement.</div>
+            <div style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;">Seeking to Change</div>
+            <div style="font-size:.75rem;color:var(--muted2);line-height:1.55;">Dissolving the pattern of exclusion — fear of being left out — released at Abundance Festival. Ready to lead from wholeness.</div>
+            <div style="margin-top:.7rem;font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;">
+              <span>👁</span> Visible to you & Oneness organizers
+            </div>
+          </div>
+
+          <div class="section-head-s" style="margin-top:1rem;">Hidden Connections ✦</div>
+          <div class="connection-card"><div class="con-avatar">H</div><div><div class="con-name">Hiroshi Nishijima</div><div class="con-sub">Sat next to you at FOA · Also joining OWL May</div></div></div>
+          <div class="connection-card"><div class="con-avatar">S</div><div><div class="con-name">Sarah Mitchell</div><div class="con-sub">Same Abundance Festival group · USA</div></div></div>
+        </div>
+        <div class="phone-nav">
+          <div class="nav-icon active"><div class="ico">🏠</div><div class="lbl">Journey</div></div>
+          <div class="nav-icon"><div class="ico">📅</div><div class="lbl">Events</div></div>
+          <div class="nav-icon"><div class="ico">🔮</div><div class="lbl">SoulSync</div></div>
+          <div class="nav-icon"><div class="ico">🌍</div><div class="lbl">Movement</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone 2: Events -->
+    <div>
+      <div class="phone-label">GLOBAL EVENTS</div>
+      <div class="phone-frame">
+        <div class="phone-bar"><span>9:41</span><div class="phone-bar-title">✦ Oneness</div><span>●●●</span></div>
+        <div class="phone-scroll">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:1rem;">Upcoming <em style="color:var(--gold)">Events</em></div>
+          <div class="course-card" style="flex-direction:column;gap:.5rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="pill owl">OWL</span><span style="font-size:.7rem;color:var(--muted);">May 10–20</span></div>
+            <div class="course-title-s">Oneness World Leaders</div>
+            <div style="font-size:.75rem;color:var(--gold);font-style:italic;">Karmic Liberation</div>
+            <div class="course-meta-s">📍 Oneness University, India · In-Person</div>
+            <div style="font-size:.72rem;color:var(--teal);margin-top:.1rem;">✓ You are eligible</div>
+          </div>
+          <div class="course-card" style="flex-direction:column;gap:.5rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="pill done">Follow-up</span><span style="font-size:.7rem;color:var(--muted);">Apr 15 · 10AM IST</span></div>
+            <div class="course-title-s">OWL Pre-session Call</div>
+            <div class="course-meta-s">💻 Zoom · Purnimaji · <span style="color:var(--teal)">Added ✓</span></div>
+          </div>
+          <div class="course-card" style="flex-direction:column;gap:.5rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="pill foa">FOA</span><span style="font-size:.7rem;color:var(--muted);">Apr 5–12</span></div>
+            <div class="course-title-s">Field of Awakening</div>
+            <div class="course-meta-s">📍 Oneness University, India · Open to all</div>
+          </div>
+          <div class="course-card" style="flex-direction:column;gap:.5rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="pill owl">OWL</span><span style="font-size:.7rem;color:var(--muted);">Aug 2026</span></div>
+            <div class="course-title-s">Oneness World Leaders</div>
+            <div style="font-size:.75rem;color:var(--gold);font-style:italic;">For More Magnificent Life</div>
+            <div class="course-meta-s">📍 Tokyo, Japan · In-Person</div>
+          </div>
+          <div class="course-card" style="flex-direction:column;gap:.5rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="pill noa">NOA</span><span style="font-size:.7rem;color:var(--muted);">Jul 2026</span></div>
+            <div class="course-title-s">Network of Oneness Achievers</div>
+            <div class="course-meta-s">📍 TBD · Planning</div>
+          </div>
+        </div>
+        <div class="phone-nav">
+          <div class="nav-icon"><div class="ico">🏠</div><div class="lbl">Journey</div></div>
+          <div class="nav-icon active"><div class="ico">📅</div><div class="lbl">Events</div></div>
+          <div class="nav-icon"><div class="ico">🔮</div><div class="lbl">SoulSync</div></div>
+          <div class="nav-icon"><div class="ico">🌍</div><div class="lbl">Movement</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone 3: Soul Sync -->
+    <div>
+      <div class="phone-label">SOUL SYNC CLUSTER</div>
+      <div class="phone-frame">
+        <div class="phone-bar"><span>9:41</span><div class="phone-bar-title">✦ Oneness</div><span>●●●</span></div>
+        <div class="phone-scroll">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:.3rem;">Soul Sync <em style="color:var(--teal)">Cluster</em></div>
+          <div style="font-size:.75rem;color:var(--muted2);margin-bottom:1rem;">Meditate together, across the world</div>
+          <button style="background:var(--teal);color:var(--bg);border:none;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;padding:.65rem;width:100%;cursor:pointer;margin-bottom:1rem;">+ Host a New Session</button>
+          <div class="section-head-s">Live Now</div>
+          <div class="ss-session">
+            <div class="ss-row"><div class="ss-title-s">Soul Sync · Morning</div><button class="ss-join">Join →</button></div>
+            <div class="ss-meta">🕐 Now · 8 joined · Purnimaji hosting</div>
+            <div class="ss-meta" style="margin-top:.3rem;color:var(--teal);">🎵 Guided audio + Background music</div>
+          </div>
+          <div class="ss-session">
+            <div class="ss-row"><div class="ss-title-s">Serene Mind · Silence</div><button class="ss-join">Join →</button></div>
+            <div class="ss-meta">🕐 In 15 min · 3 joined · Hiroshi hosting</div>
+            <div class="ss-meta" style="margin-top:.3rem;color:var(--teal);">🎵 Instrumental only</div>
+          </div>
+          <div class="section-head-s" style="margin-top:.8rem;">Today — JST</div>
+          <div class="ss-session">
+            <div class="ss-row"><div class="ss-title-s">Soul Sync · Evening</div><button class="ss-join">+</button></div>
+            <div class="ss-meta">🕐 20:00 JST · 12 registered · Klaus hosting (DE)</div>
+            <div class="ss-meta" style="margin-top:.2rem;color:var(--teal);">🎵 Guided audio available</div>
+          </div>
+          <div class="ss-session">
+            <div class="ss-row"><div class="ss-title-s">Serene Mind · Sleep</div><button class="ss-join">+</button></div>
+            <div class="ss-meta">🕐 22:30 JST · 5 registered · Sarah hosting (US)</div>
+            <div class="ss-meta" style="margin-top:.2rem;color:var(--teal);">🎵 Ambient background music</div>
+          </div>
+          <div class="section-head-s" style="margin-top:.8rem;">This Week</div>
+          <div style="font-size:.78rem;color:var(--muted2);background:var(--bg3);padding:.7rem;border-radius:4px;border:1px solid var(--border2);">
+            <div style="margin-bottom:.3rem;">✓ Mon 7:00 · Soul Sync · 6 people</div>
+            <div style="margin-bottom:.3rem;">✓ Tue 21:00 · Serene Mind · 9 people</div>
+            <div>✓ Wed 7:00 · Soul Sync · 11 people</div>
+          </div>
+        </div>
+        <div class="phone-nav">
+          <div class="nav-icon"><div class="ico">🏠</div><div class="lbl">Journey</div></div>
+          <div class="nav-icon"><div class="ico">📅</div><div class="lbl">Events</div></div>
+          <div class="nav-icon active"><div class="ico">🔮</div><div class="lbl">SoulSync</div></div>
+          <div class="nav-icon"><div class="ico">🌍</div><div class="lbl">Movement</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /shell -->
+
+<!-- SEEKER DETAIL MODAL -->
+<div class="modal-overlay" id="seekerModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title"><em>Kazuto Yasuda</em></div>
+        <div style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);margin-top:.2rem;">OC-JP-00847 · Tokyo, Japan</div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('seekerModal').classList.remove('visible')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchModalTab('profile')">Profile</button>
+        <button class="modal-tab" onclick="switchModalTab('applications')">Applications</button>
+        <button class="modal-tab" onclick="switchModalTab('dasajinotes')">Dasaji Notes</button>
+      </div>
+
+      <!-- PROFILE PANE -->
+      <div class="modal-pane active" id="mpane-profile">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+          <div><div class="form-label" style="margin-bottom:.4rem;">Courses Completed</div>
+            <div style="display:flex;gap:.4rem;flex-wrap:wrap;"><span class="pill foa">FOA</span><span class="pill done">Tapas</span><span class="pill done">Abundance Fest.</span></div>
+          </div>
+          <div><div class="form-label" style="margin-bottom:.4rem;">Language</div><span class="pill lang-en">EN ✓</span></div>
+          <div><div class="form-label" style="margin-bottom:.4rem;">Next Recommended</div><span class="pill owl">OWL ↑</span></div>
+          <div><div class="form-label" style="margin-bottom:.4rem;">Organizer</div><div style="font-size:.8rem;color:var(--muted2);">Oneness Japan</div></div>
+        </div>
+      </div>
+
+      <!-- APPLICATIONS PANE -->
+      <div class="modal-pane" id="mpane-applications">
+        <div class="app-box">
+          <div class="app-header">
+            <div class="app-course">OWL Application — May 2026 · Karmic Liberation</div>
+            <span class="app-status">Submitted Mar 27, 2026</span>
+          </div>
+          <div class="app-q">Q1. Profession / What are you most passionate about?</div>
+          <div class="app-a">Co-founder of DeployGate (mobile SaaS, 12+ yrs) & founder of U2C — structural consulting (Robert Fritz) and SaaS development. Most passionate about merging technology with consciousness to support the Oneness Movement.</div>
+          <div class="app-q">Q2. In what specific way would you want to impact the world?</div>
+          <div class="app-a">With 20+ years in IT — and recently building AI-powered systems with surprising ease and joy — I realized these capabilities could serve a much larger purpose: building the digital infrastructure of the Oneness Movement. My vision is Oneness Campus ID — a universal identity platform for seekers worldwide...</div>
+          <div class="app-q">Q3. What aspect of yourself do you seek to change?</div>
+          <div class="app-a">The deepest pattern I am working to transform is what I now recognize as a chronic sense of exclusion — a wound that began when I was seven years old. At the Abundance Festival, this block was finally released. I want to go to the root of this structure and dissolve it completely — so that I can lead, create, and love from a place of genuine wholeness.</div>
+          <div class="app-q">Q4. Payment preference</div>
+          <div class="app-a">Installment payment arrangement requested. To be discussed with Purnimaji.</div>
+        </div>
+      </div>
+
+      <!-- DASAJI NOTES PANE -->
+      <div class="modal-pane" id="mpane-dasajinotes">
+        <div style="background:var(--rose-dim);border:1px solid var(--rose);padding:.6rem .9rem;margin-bottom:1rem;font-size:.75rem;color:var(--rose);">🔒 Visible to Dasaji, Sri Preethaji, Sri Krishnaji only</div>
+        <div class="note-box">
+          <div class="note-header"><div class="note-seeker">Interview note</div><div class="note-date">Mar 15, 2026</div></div>
+          <div class="note-body">Strong technological background — 20+ years in SaaS. Deep structural thinking (Robert Fritz). Has experienced significant opening around "fear of exclusion" at Abundance Festival. Vision for Oneness Campus ID is coherent and potentially impactful. Recommend for May cohort.</div>
+          <div class="note-access"><span class="note-access-label">Visible to:</span><span class="access-tag">Dasaji</span><span class="access-tag">Sri Preethaji</span><span class="access-tag">Sri Krishnaji</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Country data
+const countryData = {
+  india:    { name:'India',   total:'2,140', foa:'1,980', owl:'98',  noa:'210', org:'EKAM India' },
+  japan:    { name:'Japan',   total:'1,830', foa:'1,720', owl:'84',  noa:'145', org:'Oneness Japan' },
+  usa:      { name:'USA',     total:'980',   foa:'890',   owl:'52',  noa:'88',  org:'Oneness USA' },
+  germany:  { name:'Germany', total:'640',   foa:'580',   owl:'38',  noa:'65',  org:'Oneness Germany' },
+  australia:{ name:'Australia',total:'420',  foa:'380',   owl:'21',  noa:'40',  org:'Oneness Australia' },
+  brazil:   { name:'Brazil',  total:'310',   foa:'280',   owl:'12',  noa:'22',  org:'Oneness Brazil' },
+};
+
+function openSeekerModal() {
+  document.getElementById('seekerModal').classList.add('visible');
+  switchModalTab('profile');
+}
+
+function switchModalTab(tab) {
+  document.querySelectorAll('.modal-tab').forEach((el,i) => {
+    const tabs = ['profile','applications','dasajinotes'];
+    el.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.modal-pane').forEach(el => el.classList.remove('active'));
+  document.getElementById('mpane-' + tab).classList.add('active');
+}
+
+// Close modal on overlay click
+document.getElementById('seekerModal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('visible');
+});
+
+function showCountry(id) {
+  const d = countryData[id];
+  if (!d) return;
+  document.getElementById('cpName').textContent = d.name;
+  document.getElementById('cpTotal').textContent = d.total;
+  document.getElementById('cpFOA').textContent = d.foa;
+  document.getElementById('cpOWL').textContent = d.owl;
+  document.getElementById('cpNOA').textContent = d.noa;
+  document.getElementById('cpOrg').textContent = d.org;
+  document.getElementById('countryPanel').classList.add('visible');
+  // highlight
+  document.querySelectorAll('.country-shape').forEach(s => s.classList.remove('selected'));
+  document.querySelectorAll(`[data-country="${id}"]`).forEach(s => s.classList.add('selected'));
+}
+
+function closeCountry() {
+  document.getElementById('countryPanel').classList.remove('visible');
+  document.querySelectorAll('.country-shape').forEach(s => s.classList.remove('selected'));
+}
+
+function toggleMapMode() {
+  alert('Filter by course: Click a country to see its breakdown by FOA / OWL / NOA');
+}
+
+function switchView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  document.querySelectorAll('.topbar-tab').forEach((el,i) => {
+    el.classList.toggle('active', (v==='admin'&&i===0)||(v==='seeker'&&i===1));
+  });
+}
+
+function switchAdmin(page) {
+  document.querySelectorAll('.inner-view').forEach(el => el.classList.remove('active'));
+  document.getElementById('admin-' + page).classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('onclick') === `switchAdmin('${page}')`);
+  });
+}
+</script>
+</body>
+</html>
